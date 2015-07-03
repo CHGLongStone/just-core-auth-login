@@ -1,0 +1,23 @@
+{
+	"name" : "just-core/auth-login",
+	"description" : "PHP Enterprise HA Framework",
+	"license" : "GNU",
+	"keywords" : [
+		"just-core",
+		"Service Oriented Architechture",
+		"Enterprise",
+		"HA",
+		"Framework",
+		"Authentication"
+	],
+	"version" : "0.*",
+	"homepage" : "https://github.com/CHGLongStone/just-core-auth-login",
+	"require" : {
+		"php" : ">=5.3.3"
+	},
+	"autoload" : {
+		"classmap" : [
+			"SERVICES"
+		]
+	}
+}
