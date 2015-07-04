@@ -1,8 +1,9 @@
 <?php 
 /**
-* this should be in APPLICATION_ROOT/CONFIG/AUTOLOAD/auth.login.local.php
+* this should be in 
+* [APPLICATION_ROOT]/CONFIG/AUTOLOAD/auth.login.local.php
 * or
-* this should be in APPLICATION_ROOT/CONFIG/AUTOLOAD/auth.login.global.php
+* [APPLICATION_ROOT]/CONFIG/AUTOLOAD/auth.global.php
 * 
 */
 
