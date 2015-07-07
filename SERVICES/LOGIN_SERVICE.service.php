@@ -80,13 +80,13 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 			return false;
 		}
 		switch(strtolower($params["AUTH_TYPE"])){//authType
-			case "USER":
+			case "user":
 				$this->authenticateUserLogin($params);
 				break;
-			case "SESSION":
+			case "session":
 				$this->authenticateUserSession($params);
 				break;
-			case "API":
+			case "api":
 				#action 
 				break;
 			
