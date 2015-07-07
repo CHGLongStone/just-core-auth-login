@@ -126,7 +126,7 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		$config = $this->cfg['USER'];
 		$searchCriteria = array(
 				'email' => $args["email"],
-		)
+		);
 		$config["search"] = $searchCriteria;
 		$this->DAO->initializeBySearch($config);
 		$stored_hash = $this->DAO->get($config["table"], 'password');
@@ -170,7 +170,7 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		$config = $this->cfg['SESSION'];
 		$searchCriteria = array(
 				'email' => $_SESSION["user_email"],
-		)
+		);
 		$config["search"] = $searchCriteria;
 		$this->DAO = new DAO();
 
