@@ -166,7 +166,7 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 			$this->serviceResponse = $result;
 			return $this->serviceResponse;
 		}
-
+		$this->init($args);
 		$config = $this->cfg['SESSION'];
 		$searchCriteria = array(
 				'email' => $_SESSION["user_email"],
