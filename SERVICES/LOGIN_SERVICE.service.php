@@ -7,7 +7,8 @@
  * https://sunnyis.me/blog/secure-passwords/
  * input from here:
  * http://www.openwall.com/articles/PHP-Users-Passwords
- * 
+ * https://github.com/ircmaxell/password_compat
+ * http://php.net/manual/en/function.password-hash.php
  * 
  * @author	Jason Medland<jason.medland@gmail.com>
  * @package	JCORE
@@ -15,24 +16,17 @@
  */
  
 
-/**
- * Class PHPASS
- *
- * @package JCORE\AUTH
-*/
-namespace SERVICE\AUTH;
+namespace JCORE\SERVICE\AUTH;
 use JCORE\TRANSPORT\SOA\SOA_BASE as SOA_BASE;
 use JCORE\DAO\DAO as DAO;
 use JCORE\AUTH\AUTH_INTERFACE as AUTH_INTERFACE;
 
 
-use SERVICE\CRUD\CRUD as CRUD;
-#use SERVICE\AUTH\PHPASS as PHPASS;
 
 /**
- * Class AJAX_STUB
+ * Class LOGIN_SERVICE
  *
- * @package SERVICE\AUTH 
+ * @package JCORE\SERVICE\AUTH 
 */
 class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{ 
 	/** 
@@ -69,6 +63,25 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		return;
 	}
 	
+	public function testInstall($args){
+		
+		if (isset($_SERVER['APPLICATION_ENV']) && $_SERVER['APPLICATION_ENV'] != 'production') {
+			if(true !== function_exists('\password_hash')){
+				echo 'native password_* functions not available'.PHP_EOL;
+			}else{
+				\PasswordCompat\binary\check() ? $test="Pass" : $test="Fail";
+				if("Fail" == $test){
+					echo 'Test for functionality of compat library: ' .$test.'<br>'.PHP_EOL.'
+					see https://github.com/ircmaxell/password_compat <br>'.PHP_EOL.'
+					phpversion ['.phpversion ().']<br>
+					';
+					echo "\n";
+				}
+			}
+			
+		}
+		return;
+	}
 	/**
 	* DESCRIPTOR: an example namespace call 
 	* 

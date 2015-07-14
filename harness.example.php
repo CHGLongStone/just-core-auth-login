@@ -14,7 +14,7 @@ session_start();
 * set some data
 */
 $AUTH_HARNESS = new JCORE\AUTH\AUTH_HARNESS();
-if(true !== $AUTH_HARNESS->register('SERVICE\AUTH\LOGIN_SERVICE')){
+if(true !== $AUTH_HARNESS->register('JCORE\SERVICE\AUTH\LOGIN_SERVICE')){
 	die('failed to load LOGIN_SERVICE');
 }
 
@@ -25,7 +25,7 @@ if(true !== $AUTH_HARNESS->register('SERVICE\AUTH\LOGIN_SERVICE')){
 * 
 */
 #$AUTH_TEST = true; //add your hook here
-$AUTH_TEST = $AUTH_HARNESS->authenticate('SERVICE\AUTH\LOGIN_SERVICE', array('AUTH_TYPE' => 'SESSION'));
+$AUTH_TEST = $AUTH_HARNESS->authenticate('JCORE\SERVICE\AUTH\LOGIN_SERVICE', array('AUTH_TYPE' => 'SESSION'));
 
 if(false === $AUTH_TEST){
 	header('Location: http://'.$_SERVER['SERVER_NAME'].'/login.php');
