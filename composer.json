@@ -13,7 +13,7 @@
 	"version" : "0.*",
 	"homepage" : "https://github.com/CHGLongStone/just-core-auth-login",
 	"require" : {
-		"php" : ">=5.3.3"
+		"php" : ">=5.3.7"
 	},
 	"autoload" : {
 		"classmap" : [
