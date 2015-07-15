@@ -28,7 +28,7 @@ if(true !== $AUTH_HARNESS->register('JCORE\SERVICE\AUTH\LOGIN_SERVICE')){
 $AUTH_TEST = $AUTH_HARNESS->authenticate('JCORE\SERVICE\AUTH\LOGIN_SERVICE', array('AUTH_TYPE' => 'SESSION'));
 
 if(false === $AUTH_TEST){
-	header('Location: http://'.$_SERVER['SERVER_NAME'].'/login.php');
+	header('Location: http://'.$_SERVER['HTTP_HOST'].'/login.php');
 	exit;
 }
 ?>
