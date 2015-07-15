@@ -15,7 +15,7 @@ Add the project to your composer file `"just-core/auth-login" : "dev-master",` y
 	"license" : "GNU",
 	"version" : "1.0.0",
 	"require" : {
-		"php" : ">=5.3.3",
+		"php" : ">=5.3.7",
 		"just-core/foundation" : "0.5.*",
 		"just-core/foundation" : "dev-master",
 		"just-core/auth-login" : "dev-master",
