@@ -211,6 +211,7 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		echo __METHOD__.__LINE__.'$_SERVER<pre>['.var_export($_SERVER, true).']</pre>'.PHP_EOL; 
 		echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.PHP_EOL; 
 		
+		abstract these 2 to config params HTTP_PASS_PHRASE, HTTP_API_KEY
 		echo __METHOD__.__LINE__.'$_SERVER["HTTP_PASS_PHRASE"]<pre>['.var_export($_SERVER["HTTP_PASS_PHRASE"], true).']</pre>'.PHP_EOL; 
 		echo __METHOD__.__LINE__.'$_SERVER["HTTP_API_KEY"]<pre>['.var_export($_SERVER["HTTP_API_KEY"], true).']</pre>'.PHP_EOL; 
 		#print_r(apache_response_headers());
