@@ -101,6 +101,7 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 				break;
 			case "api":
 				#action 
+				$this->authenticateAPICall($params);
 				break;
 			
 			default:
@@ -147,6 +148,10 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		if(true ===  \password_verify($args['password'], $stored_hash)){
 			$result['status'] = 'OK';
 			$result['user_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			/*
+			$result['comp_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			$result['role_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			*/
 			$this->serviceResponse = $result;
 		}else{
 			$result['error'] = 'failed to authenticate';
@@ -196,6 +201,57 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		}
 		return false;
 	}
+	/**
+	* DESCRIPTOR: an example namespace call 
+	* @param param 
+	* @return return  
+	*/
+	public function authenticateAPICall($args){
+		/*
+		echo __METHOD__.__LINE__.'$_SERVER<pre>['.var_export($_SERVER, true).']</pre>'.PHP_EOL; 
+		echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.PHP_EOL; 
+		
+		echo __METHOD__.__LINE__.'$_SERVER["HTTP_PASS_PHRASE"]<pre>['.var_export($_SERVER["HTTP_PASS_PHRASE"], true).']</pre>'.PHP_EOL; 
+		echo __METHOD__.__LINE__.'$_SERVER["HTTP_API_KEY"]<pre>['.var_export($_SERVER["HTTP_API_KEY"], true).']</pre>'.PHP_EOL; 
+		#print_r(apache_response_headers());
+		#print_r(get_headers());
+		*/
+		if(
+			!isset($_SERVER['HTTP_API_KEY']) 
+			|| 
+			!isset($_SERVER['HTTP_PASS_PHRASE'])
+		){
+			$result['error'] = 'failed to authenticate';
+			$this->serviceResponse = $result;
+			return $this->serviceResponse;
+		}
+		$this->init($args);
+		$config = $this->cfg['API'];
+		$searchCriteria = array(
+				'api_key' => $_SERVER["HTTP_API_KEY"],
+		);
+		$config["search"] = $searchCriteria;
+		$this->DAO = new DAO();
+		#echo __METHOD__.__LINE__.'$config<pre>['.var_export($config, true).']</pre>'.PHP_EOL; 
+		$this->DAO->initializeBySearch($config);
+		$stored_hash = $this->DAO->get($config["table"], 'pass_phrase');
+		#echo __METHOD__.__LINE__.'$stored_hash<pre>['.var_export($stored_hash, true).']</pre>'.PHP_EOL; 
+		
+		if(true ===  \password_verify($_SERVER['HTTP_PASS_PHRASE'], $stored_hash)){
+			$result['status'] = 'OK';
+			$result['client_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			/*
+			$result['comp_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			$result['role_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			*/
+			$this->serviceResponse = $result;
+		}else{
+			$result['error'] = 'failed to authenticate';
+			$this->serviceResponse = $result;
+		}
+	}
+	
+	
 	/**
 	* DESCRIPTOR: an example namespace call 
 	* @param param 
