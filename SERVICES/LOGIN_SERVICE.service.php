@@ -148,9 +148,11 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		if(true ===  \password_verify($args['password'], $stored_hash)){
 			$result['status'] = 'OK';
 			$result['user_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			$result['comp_id'] = $this->DAO->get($config["table"], 'client_fk');
+			$result['role_id'] = $this->DAO->get($config["table"], 'user_role_fk');
 			/*
-			$result['comp_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
-			$result['role_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+
+
 			*/
 			$this->serviceResponse = $result;
 		}else{
