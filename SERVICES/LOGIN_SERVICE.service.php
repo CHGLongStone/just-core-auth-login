@@ -103,6 +103,10 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 				#action 
 				$this->authenticateAPICall($params);
 				break;
+			case "token":
+				#action 
+				$this->authenticateAPICallToken($params);
+				break;
 			
 			default:
 				return false;
@@ -251,6 +255,43 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		}else{
 			$result['error'] = 'failed to authenticate';
 			$this->serviceResponse = $result;
+		}
+	}
+	
+	/**
+	* DESCRIPTOR: an example namespace call 
+	* @param param 
+	* @return return  
+	*/
+	public function authenticateAPICallToken($args){
+		/*
+		echo __METHOD__.__LINE__.'$_SERVER<pre>['.var_export($_SERVER, true).']</pre>'.PHP_EOL; 
+		echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.PHP_EOL; 
+		
+		abstract these 2 to config params HTTP_PASS_PHRASE, HTTP_API_KEY
+		echo __METHOD__.__LINE__.'$_SERVER["HTTP_PASS_PHRASE"]<pre>['.var_export($_SERVER["HTTP_PASS_PHRASE"], true).']</pre>'.PHP_EOL; 
+		echo __METHOD__.__LINE__.'$_SERVER["HTTP_API_KEY"]<pre>['.var_export($_SERVER["HTTP_API_KEY"], true).']</pre>'.PHP_EOL; 
+		#print_r(apache_response_headers());
+		#print_r(get_headers());
+		*/
+		if(
+			!isset($_REQUEST['PUBLIC_TOKEN']) 
+		){
+			$result['error'] = 'failed to authenticate';
+			$this->serviceResponse = $result;
+			return $this->serviceResponse;
+		}
+		$this->init($args);
+		$config = $this->cfg['TOKEN'];
+		#echo __METHOD__.__LINE__.'$config<pre>['.var_export($config, true).']</pre>'.PHP_EOL; 
+		if(
+			true === in_array($_REQUEST['PUBLIC_TOKEN'],$config['TOKEN_HAYSTACK'])
+		){
+			$result['status'] = 'OK';
+			$this->serviceResponse = $result;
+			return $this->serviceResponse;
+		}else{
+			return false;
 		}
 	}
 	
