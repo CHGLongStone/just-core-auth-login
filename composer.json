@@ -1,6 +1,6 @@
 {
 	"name" : "just-core/auth-login",
-	"description" : "PHP Enterprise HA Framework",
+	"description" : "Authentication Page Plugin for just-core/foundation",
 	"license" : "GNU",
 	"keywords" : [
 		"just-core",
