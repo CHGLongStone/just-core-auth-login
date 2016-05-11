@@ -1,6 +1,6 @@
 {
 	"name" : "just-core/auth-login",
-	"description" : "Authentication Page Plugin for just-core/foundation",
+	"description" : "Authentication Page Plugin for the just-core eco system",
 	"license" : "GNU",
 	"keywords" : [
 		"just-core",
