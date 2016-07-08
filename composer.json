@@ -25,7 +25,6 @@
 		"just-core/dao-orm": "Object Relational Manager Stub extends Data Access Object for the just-core eco system",
 		"just-core/http-optimization": "Static asset management, js, css etc. Compile to reduce http request load requests, minify to reduce http load times",
 		"just-core/metronic": "support for metronic templates in the just-core eco system"
-
 	},
 	"autoload" : {
 		"classmap" : [
