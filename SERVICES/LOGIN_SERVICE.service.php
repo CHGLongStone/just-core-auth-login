@@ -1,6 +1,6 @@
 <?php
 /**
-* 
+* Class LOGIN_SERVICE 
 * 
 * @author	Jason Medland<jason.medland@gmail.com>
 * @package	JCORE
