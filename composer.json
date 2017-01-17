@@ -12,7 +12,7 @@
 		"Authentication"
 	],
 	"version" : "0.*",
-	"homepage" : "https://github.com/CHGLongStone/just-core-auth-login",
+	"homepage" : "https://chglongstone.github.io/just-core-auth-login",
 	"require" : {
 		"php" : ">=5.3.7"
 	},
