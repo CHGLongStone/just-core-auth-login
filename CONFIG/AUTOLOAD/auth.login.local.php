@@ -12,20 +12,37 @@ return array(
 		'LOGIN_SERVICE' => array(
 			'AUTH_TYPE' => array(
 				'USER' => array(
-					'DSN' => 'YOUR_PRIMARY_DATA_STORE',
+					'DSN' => 'JCORE',
 					'table' => 'user',
 					'pk_field' => 'user_pk',
 					'foundation' => true,
 					#'search' => array(), added in the implementation
 				),
 				'SESSION' => array(
-					'DSN' => 'YOUR_PRIMARY_DATA_STORE',
+					'DSN' => 'JCORE',
 					'table' => 'user',
 					'pk_field' => 'user_pk',
 					'foundation' => true,
 					#'search' => array(), added in the implementation
 				),
-				
+				'API' => array(
+					'DSN' => 'JCORE',
+					'table' => 'client',
+					'pk_field' => 'client_pk',
+					'foundation' => true,
+					#'search' => array(), added in the implementation
+				),
+				/***
+				* if you want sign up to require a token ie. no public access
+				* you can put a few here before you set up a proper management function 
+				*/
+				'TOKEN' => array(
+					'TOKEN_HAYSTACK' => array(
+						'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+						'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY',
+						'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ',
+					),
+				),
 			),
 		),
     ),
