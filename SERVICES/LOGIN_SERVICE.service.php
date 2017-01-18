@@ -3,8 +3,8 @@
 * Class LOGIN_SERVICE 
 * 
 * @author	Jason Medland<jason.medland@gmail.com>
-* @package	JCORE
-* @subpackage	AUTH
+* @package	JCORE\SERVICE\AUTH
+* 
 */
  
 
