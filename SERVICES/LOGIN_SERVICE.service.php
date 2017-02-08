@@ -74,10 +74,12 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 	* @return null
 	*/
 	public function init($args){
+		#echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.'<br>'; 
 		/**
-		* echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.'<br>'; 
+		* 
 		*/
 		$this->cfg = $GLOBALS["CONFIG_MANAGER"]->getSetting('AUTH','LOGIN_SERVICE','AUTH_TYPE');
+		#echo __METHOD__.__LINE__.'$this->cfg<pre>['.var_export($this->cfg, true).']</pre>'.'<br>'; 
 		return;
 	}
 	/**
@@ -176,6 +178,7 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 	public function authenticateUserLogin($args){
 		
 		$this->init($args);
+		$this->testInstall($args);
 		$this->DAO = new DAO();
 		$config = $this->cfg['USER'];
 		$searchCriteria = array(
