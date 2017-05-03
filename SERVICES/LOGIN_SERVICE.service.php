@@ -146,7 +146,8 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		}
 		
 		if(isset($this->serviceResponse["status"]) && 'OK' == $this->serviceResponse["status"]){
-			return true;
+			return $this->serviceResponse;
+			#return true;
 		}
 		return false;
 	}
@@ -261,8 +262,8 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 	*/
 	public function authenticateAPICall($args){
 		/*
-		echo __METHOD__.__LINE__.'$_SERVER<pre>['.var_export($_SERVER, true).']</pre>'.PHP_EOL; 
 		echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.PHP_EOL; 
+		echo __METHOD__.__LINE__.'$_SERVER<pre>['.var_export($_SERVER, true).']</pre>'.PHP_EOL; 
 		
 		abstract these 2 to config params HTTP_PASS_PHRASE, HTTP_API_KEY
 		echo __METHOD__.__LINE__.'$_SERVER["HTTP_PASS_PHRASE"]<pre>['.var_export($_SERVER["HTTP_PASS_PHRASE"], true).']</pre>'.PHP_EOL; 
@@ -276,6 +277,7 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 			!isset($_SERVER['HTTP_PASS_PHRASE'])
 		){
 			$result['error'] = 'failed to authenticate';
+			
 			$this->serviceResponse = $result;
 			return $this->serviceResponse;
 		}
@@ -292,10 +294,11 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		#echo __METHOD__.__LINE__.'$stored_hash<pre>['.var_export($stored_hash, true).']</pre>'.PHP_EOL; 
 		
 		if(true ===  \password_verify($_SERVER['HTTP_PASS_PHRASE'], $stored_hash)){
+			
 			$result['status'] = 'OK';
 			$result['client_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
-			/*
 			$result['comp_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			/*
 			$result['role_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
 			*/
 			$this->serviceResponse = $result;
@@ -303,6 +306,8 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 			$result['error'] = 'failed to authenticate';
 			$this->serviceResponse = $result;
 		}
+		
+		return $this->serviceResponse;
 	}
 	
 	/**
