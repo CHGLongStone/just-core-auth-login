@@ -74,8 +74,8 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 	* @return null
 	*/
 	public function init($args){
-		#echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.'<br>'; 
 		/**
+		echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.'<br>'; 
 		* 
 		*/
 		$this->cfg = $GLOBALS["CONFIG_MANAGER"]->getSetting('AUTH','LOGIN_SERVICE','AUTH_TYPE');
@@ -121,6 +121,7 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 	* @return bool
 	*/
 	public function authenticate($params = null){
+		#echo __METHOD__.__LINE__.'$params<pre>['.var_export($params, true).']</pre>'.'<br>'; 
 		if(!isset($params["AUTH_TYPE"])){
 			return false;
 		}
@@ -298,6 +299,21 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 			$result['status'] = 'OK';
 			$result['client_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
 			$result['comp_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
+			if(!isset($_SESSION['user_id'])){
+				$query = '
+				SELECT client_user_pk 
+				FROM client_user
+				WHERE client_fk = '.$result['client_id'].'
+				ORDER BY client_user_pk ASC
+				LIMIT 0,1
+				';
+				$userResult = $GLOBALS["DATA_API"]->retrieve('BLACKWATCH', $query, $extArgs=array('returnArray' => true));
+				if(isset($userResult[0]["client_user_pk"])){
+					$_SESSION['user_id'] = $userResult[0]["client_user_pk"];
+				}else{
+					#echo __METHOD__.__LINE__.'$userResult<pre>['.var_export($userResult, true).']</pre>'.PHP_EOL; 
+				}
+			}
 			/*
 			$result['role_id'] = $this->DAO->get($config["table"], $config["pk_field"]);
 			*/
