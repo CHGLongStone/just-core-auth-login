@@ -31,6 +31,8 @@ return array(
 					'pk_field' => 'client_pk',
 					'foundation' => true,
 					#'search' => array(), added in the implementation
+					'PASS_PHRASE' => 'REDIRECT_HTTP_PASS_PHRASE',
+					'API_KEY' => 'REDIRECT_HTTP_API_KEY',
 				),
 				/***
 				* if you want sign up to require a token ie. no public access
