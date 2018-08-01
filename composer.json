@@ -1,7 +1,7 @@
 {
 	"name" : "just-core/auth-login",
 	"description" : "Authentication Page Plugin for the just-core eco system",
-	"license" : "GNU",
+	"license" : "GPL-3.0-or-later",
 	"keywords" : [
 		"just-core",
 		"Service Oriented Architechture",
