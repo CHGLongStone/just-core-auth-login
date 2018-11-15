@@ -451,8 +451,8 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
             $subject = "Your Lost Password";
             $raw_data = mail($stored_email,$subject,$RECOVERY_EMAIL,$headers);
 			$file = '/var/log/httpd/'.$_SERVER["SERVER_NAME"].'.mail.log';
-			file_put_contents($file, 'raw_data::'.$raw_data."\r\n", FILE_APPEND);
-			
+			#file_put_contents($file, 'raw_data::'.$raw_data."\r\n", FILE_APPEND);
+			$file = $GLOBALS["APPLICATION_ROOT"].'log/'.$_SERVER["SERVER_NAME"].'.mail.log';
 			$testHash = true;
 			
 			
