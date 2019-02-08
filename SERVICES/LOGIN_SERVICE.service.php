@@ -442,11 +442,11 @@ class LOGIN_SERVICE extends SOA_BASE implements AUTH_INTERFACE{
 		
 			#echo __METHOD__.__LINE__.'$RECOVERY_EMAIL<pre>['.var_export($RECOVERY_EMAIL, true).']</pre>'.'<br>'; 
 			
-            $headers = "From: ".$COMPANY_NAME." <info@northernsts.com> \n";
+            $headers = "From: ".$COMPANY_NAME." <info@".$_SERVER["HTTP_HOST"].".com> \n";
             $headers .= "To-Sender: \n";
             $headers .= "X-Mailer: PHP\n"; // mailer
-            $headers .= "Reply-To: info@northernsts.com\n"; // Reply address
-            $headers .= "Return-Path: info@northernsts.com.com\n"; //Return Path for errors
+            $headers .= "Reply-To: info@".$_SERVER["HTTP_HOST"].".com\n"; // Reply address
+            $headers .= "Return-Path: info@".$_SERVER["HTTP_HOST"].".com.com\n"; //Return Path for errors
             $headers .= "Content-Type: text/html; charset=iso-8859-1"; //Enc-type
             $subject = "Your Lost Password";
             $raw_data = mail($stored_email,$subject,$RECOVERY_EMAIL,$headers);
